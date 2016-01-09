@@ -1,0 +1,222 @@
+project weshu_d8 "Magyar Wesnoth Közösségi Portál Drupal 8 migrálás"  2016-01-04 +3m {
+  timezone "Europe/Budapest"
+  currency "HUF"
+  timeformat "%Y-%m-%d"
+  numberformat "-" "" "," "." 1
+  currencyformat "(" ")" "," "." 0
+}
+
+resource dev "Fejlesztők" {
+  resource dev1 "Udi" {
+  }
+}
+
+resource des "Grafikusok" {
+  resource des1 "Udi" {
+  }
+}
+
+resource board "Fórumozók" {
+}
+
+resource translators "Fordítók" {
+}
+
+task d8 "Drupal 8 migrálás" {
+  task spec "Igényfelmérés" {
+    task domain "Szavazás domain névről" {
+      start 2016-01-05-18:00
+      effort 14d
+      allocate dev1, board
+      complete 50
+      journalentry 2016-01-09 "Szavazás eldőlni látszik" {
+        alert green
+      }
+    }
+    task featurelist "Kívánságlista összeállítása" {
+      start 2016-01-10-09:00
+      effort 7d
+      allocate dev, board
+      complete 0
+    }
+    task translators "Fordítók igényeinek felmérése" {
+      start 2016-01-10-09:00
+      effort 7d
+      allocate dev, translators
+      complete 0
+    }
+  }
+  task design "Megjelenés" {
+    task plan "Grafikai terv" {
+      depends !!spec.featurelist
+      effort 7d
+      allocate des
+    }
+    task theme "Drupal 8 smink" {
+      depends !plan
+      effort 7d
+      allocate des
+    }
+  }
+  task website "Portál" {
+    task plan "Átálláshoz szükséges modulok összegyűjtése" {
+      depends !!spec.featurelist
+      effort 2d
+      allocate dev
+    }
+    task webcollab "WebCollab kiváltása" {
+      depends !!spec.translators, !plan
+      effort 7d
+      allocate dev
+    }
+    task runbook "Átállás menetének kidolgozása" {
+      depends !!spec.featurelist, !webcollab, !plan
+      effort 3d
+      allocate dev
+    }
+  }
+  task test "Tesztelés" {
+    task new "Új tesztportál létrehozása" {
+      depends d8.design, d8.website
+      effort 2d
+      allocate dev
+    }
+    task test "Vélemények, hibák begyűjtése" {
+      depends !new
+      effort 7d
+      allocate board, dev
+    }
+    task fixes "Hibák javítása" {
+      depends !test
+      effort 7d
+      allocate dev
+    }
+  }
+  task release "Átállás" {
+    depends !test
+    effort 1d
+    allocate dev
+  }
+}
+
+# Now the project has been specified completely. Stopping here would
+# result in a valid TaskJuggler file that could be processed and
+# scheduled. But no reports would be generated to visualize the
+# results.
+
+navigator navbar {
+  hidereport 0
+}
+
+macro TaskTip [
+  tooltip istask() -8<-
+  '''Kezdés: ''' <-query attribute='start'->
+  '''Befejezés: ''' <-query attribute='end'->
+  ----
+  '''Erőforrások:'''
+
+  <-query attribute='resources'->
+  ----
+  '''Előfeltételek: '''
+
+  <-query attribute='precursors'->
+  ----
+  '''Következő: '''
+
+  <-query attribute='followers'->
+  ->8-
+]
+
+
+# A traditional Gantt chart with a project overview.
+taskreport overview "" {
+  header -8<-
+  === Projekt áttekintése ===
+
+  A projekt célja, hogy a Magyar Wesnoth Közösség portálját Drupal 6-ról Drupal 8-ra migrálja. A Drupal 6 támogatásának vége 2016. február 24., a projektet addigra lenne jó befejezni, de prioritás a jó működés.
+
+  === Projektterv ===
+  ->8-
+
+  columns bsi { title 'WBS' }, name, start, end, effort, chart { ${TaskTip} }
+
+  # For this report we like to have the abbreviated weekday in front
+  # of the date. %a is the tag for this.
+  timeformat "%a %Y-%m-%d"
+  loadunit days
+  hideresource 1
+  caption 'Minden szükséges erőforrás napokban van megadva.'
+
+  footer -8<-
+  ->8-
+}
+
+textreport frame "" {
+  header -8<-
+  == Magyar Wesnoth Közösségi Portál Drupal 8 migrálás ==
+  <[navigator id="navbar"]>
+  ->8-
+  footer "----"
+  textreport index "Overview" {
+    formats html
+    center '<[report id="overview"]>'
+  }
+
+  textreport "Status" {
+    formats html
+    center -8<-
+    <[report id="status.dashboard"]>
+    ----
+    <[report id="status.completed"]>
+    ----
+    <[report id="status.ongoing"]>
+    ----
+    <[report id="status.future"]>
+    ->8-
+  }
+}
+
+# Macro to set the background color of a cell according to the alert
+# level of the task.
+macro AlertColor [
+  cellcolor plan.alert = 0 "#00D000" # green
+  cellcolor plan.alert = 1 "#D0D000" # yellow
+  cellcolor plan.alert = 2 "#D00000" # red
+]
+
+taskreport status "" {
+  columns bsi { width 50 title 'WBS' }, name { width 150 },
+  start { width 100 }, end { width 100 },
+        effort { width 100 },
+        alert { tooltip plan.journal
+          != '' "<-query attribute='journal'->" width 150 },
+        status { width 150 }
+
+  taskreport dashboard "" {
+    headline "Projekt áttekintő (<-query attribute='now'->)"
+    columns name { title "Task" ${AlertColor} width 200},
+    resources { width 200 ${AlertColor}
+      listtype bullets
+      listitem "<-query attribute='name'->"
+      start ${projectstart} end ${projectend} },
+              alerttrend { title "Trend" ${AlertColor} width 50 },
+              journal { width 350 ${AlertColor} }
+    journalmode status_up
+    journalattributes headline, author, date, summary, details
+    hidetask ~hasalert(0)
+    sorttasks alert.down, plan.end.up
+    period %{${now} - 1w} +1w
+  }
+  taskreport completed "" {
+    headline "Befejezett feladatok"
+    hidetask ~(plan.end <= ${now})
+  }
+  taskreport ongoing "" {
+    headline "Folyamatban lévő feladatok"
+    hidetask ~((plan.start <= ${now}) & (plan.end > ${now}))
+  }
+  taskreport future "" {
+    headline "Hátralévő feladatok"
+    hidetask ~(plan.start > ${now})
+  }
+}
