@@ -1,0 +1,125 @@
+= Specifikáció a Magyar Wesnoth Közösségi Portál Drupal 8 migrációjához
+:toc:
+
+A Magyar Wesnoth Közösségi Portál (továbbiakban portál) jelenleg Drupal 6 (továbbiakban D6) alatt fut. A D6 támogatásnak https://www.drupal.org/drupal-6-eol[2016. február 24-től vége], ezért a portált Drupal 8-ra (továbbiakban D8) kell migrálni. Ez a specifikáció összegyűjti a migráláshoz szükséges feladatokat és követelményeket.
+
+== Fejlesztés menete
+
+A fejlesztés a közösség Github tárolóján zajlik. A projekttel kapcsolatos tároló a https://github.com/wesnoth-hu/drupal8[wesnoth-hu/drupal8]. Itt található ennek a specifikációnak és a projekttervnek a forrásfájlja.
+
+Az átállással kapcsolatos megbeszélések a portál fórumán zajlanak. Több téma is létre lett hozva az észrevételekkel, mindenképpen használjuk http://wesnoth.fsf.hu/forums/portal/eszrevetelek[„A portál / Észrevételek” kategóriát]. A specifikáció segít összegyűjteni a különböző témákban felmerült igényeket.
+
+== Grafikai követelmények
+
+- Ne legyen sötét alapon világos betűs, fárasztóbb a szemnek. +
+Javasolta: http://wesnoth.fsf.hu/forum/tema/1722#comment-17759[Udi]
+- Legyen reszponzív, alkalmazkodjon a képernyő méretéhez (Bootstrap 3-ban gondolkodok, azt ismerem). +
+Javasolta: http://wesnoth.fsf.hu/forum/tema/1722#comment-17759[Udi]
+- A navigációs elemek egy helyen legyenek, ne legyen a „Saját menü” a bal oldalon, az is a fejlécben kapjon helyet. +
+Javasolta: http://wesnoth.fsf.hu/forum/tema/1722#comment-17759[Udi]
+- A főoldalon a tartalom több oszlopos legyen, lehessen pl. az újévi képet, bajnoki gratulációt és a szavazást egymás mellé elhelyezni, hogy mindegyik a hajtás fölött látszódjon. +
+Javasolta: http://wesnoth.fsf.hu/forum/tema/1722#comment-17759[Udi]
+- A hozzászólások megjelenítése egységes legyen, a privát üzeneteknél jelenleg a bal oldalon van a profilkép. +
+Javasolta: http://wesnoth.fsf.hu/forum/tema/1722#comment-17759[Udi]
+- Használja az 1.13-as verzió logóját és egységeit. +
+Javasolta: http://wesnoth.fsf.hu/forum/tema/2342[SilverMage]
+- Ha a háttér változna sötétebb színre pl. barna, akkor a LINKEK színe módosulhatna figyelemfelhívóbbra pl. nem látogatott linkl narancs, a látogatott sárgásbarna, de az eddigi is jó, csak legyen megkülönböztetve, hogy látogatott-e vagy sem +
+Javasolta: http://wesnoth.fsf.hu/forum/tema/1722#comment-17763[Jf. Tasz]
+
+== Portál követelmények
+
+=== Szövegszerkesztő
+
+- A böngésző helyesírásellenörző funkciója megmaradjon a WYSIWYG mezőben is. +
+Javasolta: http://wesnoth.fsf.hu/forum/tema/1722#comment-17759[Jf. Tasz]
+- A legalaktartóbb legyen (WYSIWYG), de elérhető legyen a HTML kód rész is. +
+Javasolta: http://wesnoth.fsf.hu/forum/tema/1722#comment-17763[Jf. Tasz]
+- Mosolygó arcocskák behúzhatóak legyenek, és úgy jelenjenek meg. +
+Javasolta: http://wesnoth.fsf.hu/forum/tema/1722#commen+t-17763[Jf. Tasz]
+- Mosolygó arcocskákból van-e Wesnoth témájú? Esetleg emeljünk-e át kisméretű képeket a játékból (32x32 pixel, Battle for Wesnoth 1.13.2\images\icons\)? +
+Javasolta: http://wesnoth.fsf.hu/forum/tema/1722#comment-17763[Jf. Tasz]
+- Állítható betűméret +
+Javasolta: http://wesnoth.fsf.hu/forum/tema/1722#comment-17763[Jf. Tasz]
+- Spoiler (kiszivárogtatás) funkció, ez a szövegrész alapesetben rejtve van, és klikkre kinyílik (rejtett szöveg megjelenítése) +
+Javasolta: http://wesnoth.fsf.hu/forum/tema/1722#comment-17763[Jf. Tasz]
+- A tudástár cikkei legyenek átemelve egy wiki jellegű rendszerbe. +
+Javasolta: http://wesnoth.fsf.hu/node/2344#comment-17755[Jf. Tasz]
+
+=== Hírek
+
+- A véletlenszerű képek csoportonkénti véletlenszerűsítése. Bármely hírcsoportokhoz (címkékhez) pl. bajnokság: akkor a  glória és a lovag képek tartoznak; a kiadási hírekhez Wesnoth logók; az általános hírhez a paraszt és az erdész egységek, stb. +
+Javasolta: http://wesnoth.fsf.hu/forum/tema/1722#comment-17763[Jf. Tasz]
+
+=== Fórum
+
+==== Általános
+
+- Új fórumtéma gomb legyen az adott fórumon belül is. +
+Javasolta: http://wesnoth.fsf.hu/forum/tema/1825#comment-14851[Montezuma]
+- Megmaradjon a jelölés arra, hogy  bejelentkezettek csak a legutóbbi kilépés óta mik az új bejegyzések (pirossal az ikon) +
+Javasolta: http://wesnoth.fsf.hu/forum/tema/1722#comment-17763[Jf. Tasz]
+- Megmaradjon a Friss tartalom nyomkövetés (http://wesnoth.fsf.hu/tracker) +
+Javasolta: http://wesnoth.fsf.hu/forum/tema/1722#comment-17763[Jf. Tasz]
+- Válasznál látszódjon az utóbbi "x" pl.15 bejegyzés, (ne csak az első, mint most). Szöveg kijelölésre, majd klikk egy idézés gombra és megjelenik idézve, utána automatikus új üres alapértlemezett sort szúrjon be. +
+Javasolta: http://wesnoth.fsf.hu/forum/tema/1722#comment-17760[negusnyul], http://wesnoth.fsf.hu/forum/tema/1722#comment-17763[Jf. Tasz]
+- Olvasottság mérése ne egy érték legyen, pl. 25 hozzászólás után olvasott, hanem pl. az elmúlt 2 héten belül, több mint 20 hozzászólás volt, a mozgó ikonja jó. +
+Javasolta: http://wesnoth.fsf.hu/forum/tema/1722#comment-17763[Jf. Tasz]
+- Legyen kiemelt fórumtéma (még régebben volt kb. 2010/2011), amit az adminok állítanak, egy kis felkiáltójel kapjon az ikon valamelyik felső sarkába. +
+Javasolta: http://wesnoth.fsf.hu/forum/tema/1722#comment-17763[Jf. Tasz]
+
+==== Rangok
+
+- Nagy aktivitásmérő: egy határ kell pl. 1 év, aki ezen belül bejelentkezik az aktívnak számít, aki nem, az inaktív. +
+Javasolta: http://wesnoth.fsf.hu/forum/tema/1722#comment-17763[Jf. Tasz]
+- Az aktív felhasználókat tovább lehessen rangsorolni: maradhat az eddigi (címkés) csoportrang (bajnok, admin, szerkesztő, bajnokság szervező), de ezeknek az elérését szabályzatba kell foglalni, feltételekhez kötni, újraértékelni és új címeket kiírni (pl.: szerverfüggő, azaz mindig játékra kész; alapító, kiemelt tag, stb.) +
+Javasolta: http://wesnoth.fsf.hu/forum/tema/1722#comment-17763[Jf. Tasz]
+
+=== Regisztráció, bejelentkezés
+
+- *FONTOS!* Link ezekre: Adatvédelmi tájékoztató és Felhasználói szabályzat. Ezt meg kéne írni mihamarabb. Legalább egy rövidet kezdetnek. +
+Javasolta: http://wesnoth.fsf.hu/forum/tema/1722#comment-17763[Jf. Tasz]
+- *FONTOS!* Mit ad ez a közösség?,ezt leírni ezzel növelni az aktív és tettre kész érdeklődő játékosokat +
+Javasolta: http://wesnoth.fsf.hu/forum/tema/1722#comment-17763[Jf. Tasz]
+- HTTPS bejelentkezés a HTTP helyett. +
+Javasolta: http://wesnoth.fsf.hu/forum/tema/1722#comment-17763[Jf. Tasz]
+- A nem regisztráltak ne írhasanak az oldalra (arra ott az e-mail) +
+Javasolta: http://wesnoth.fsf.hu/forum/tema/1722#comment-17763[Jf. Tasz], http://wesnoth.fsf.hu/forum/tema/1722#comment-17765[Udi]
+- Többszörös captcha vagy valami megoldás a robotok és botok ellen; pl: 3+11=szöveges válasz magyarul v. három + 11  = szöveges válasz magyarul v. ehhez hasonló captcha-k kombinálása, tehát pl. 2-3-at kell jól megoldani. +
+Javasolta: http://wesnoth.fsf.hu/forum/tema/1722#comment-17763[Jf. Tasz]
+- Megerősítő e-mail, amiben van egy link, hogy azzal aktiválja a profilját , a profil aktiválására pl. 48 óra áll rendelkezésre. +
+Javasolta: http://wesnoth.fsf.hu/forum/tema/1722#comment-17763[Jf. Tasz]
+- A http://wesnoth.fsf.hu/user/register[regisztrációs oldal] szépen legyen megszerkesztve (jelenleg a minimum szabályzat összefolyik). +
+Javasolta: http://wesnoth.fsf.hu/forum/tema/1722#comment-17763[Jf. Tasz]
+- Több időparaméter függvényében (1 éve, 6 hónapja, 1 hónapja, 2 hete) ennyi tag vált inaktívvá/aktívvá, ennyi új tag lett/ennyi törölte profilját. +
+Javasolta: http://wesnoth.fsf.hu/forum/tema/1722#comment-17763[Jf. Tasz]
+
+=== Profil
+
+- Több közösségi link megadásának lehetőségei a kapcsolat résznél pl: Facebook, Twitter, Google+, Skype, nemzetközi wesnoth fórum, és minden egyes opcióhoz bejelölni lehessen, hogy publikus (nem regisztrált is láthatja) v. csak regisztráltaknak v. privát (a felhasználó és adminok láthatják) +
+Javasolta: http://wesnoth.fsf.hu/forum/tema/1722#comment-17763[Jf. Tasz]
+- Wesnoth modul a profilhoz: legördülő menükből: kedvenc egység, faj, frakció (nem ugyanaz a fajjal), hadjárat - ebből is lehetne felhasználói statot készíteni +
+Javasolta: http://wesnoth.fsf.hu/forum/tema/1722#comment-17763[Jf. Tasz]
+- Wesnoth Ladder profil és pontok a profilban. +
+Javasolta: http://wesnoth.fsf.hu/forum/tema/1722#comment-17765[Udi]
+
+=== Versenyszervezés
+
+- Google jelentkezési kérdőíves integráció, akár a drupal rendszerén belül? +
+Javasolta: http://wesnoth.fsf.hu/forum/tema/1722#comment-17763[Jf. Tasz]
+- Felfrissíteni a mindenkori használt térképcsomag pálya neveit, úgy, hogy elsődlegesen a magyar elnevezés legyen a döntő pl.: Sulla romjai (Sula Ruins), ha csak angol név van, akkor az angol név marad. +
+Javasolta: http://wesnoth.fsf.hu/forum/tema/1722#comment-17763[Jf. Tasz]
+- A meccsek feltöltésnél részletesebb szárazadat (vagy automatikusan vagy szövegdobozokban), pl: hány körig tartott, szemben álló hősök, fajok, mindkét ellenfélre (szemben álló oszlopos elrendezés), véletlengenerátor statisztikája, az is jelölve legyen, hogy véletlenszerűen volt kisorsolva az adott faj-vezér vagy meghatározott volt jelentkezésnél, használt módosítók, halál, aranygyűjtés - és ebből egy-egy tornára, bajnokságra azonnal lehet végső statisztikát csinálni és a tippjáték eldöntésében is segít. +
+Javasolta: http://wesnoth.fsf.hu/forum/tema/1722#comment-17763[Jf. Tasz], http://wesnoth.fsf.hu/forum/tema/1722#comment-17765[Udi]
+
+=== Dokumentumok
+
+- *FONTOS!* Adatvédelmi tájékoztató és Felhasználói szabályzat. Ezt meg kéne írni mihamarabb. Legalább egy rövidet kezdetnek. +
+Javasolta: http://wesnoth.fsf.hu/forum/tema/1722#comment-17763[Jf. Tasz]
+- *FONTOS!* Mit ad ez a közösség?,ezt leírni ezzel növelni az aktív és tettre kész érdeklődő játékosokat +
+Javasolta: http://wesnoth.fsf.hu/forum/tema/1722#comment-17763[Jf. Tasz]
+- „A szabályok Értünk vannak és amiatt, hogy a Közösség működését ne a káosz uralja.” +
+Javasolta: http://wesnoth.fsf.hu/forum/tema/1722#comment-17763[Jf. Tasz]
+- MWK történelme 2005-től napjainkig (alapítók, lépések, mérföldkövek, nevek, időpontok, új lelkes tagok, szervezők, statisztikák, interjúk, stb.) +
+Javasolta: http://wesnoth.fsf.hu/forum/tema/1722#comment-17763[Jf. Tasz]
+- Éves összefoglalók, első lenne az idei (2016) és a 0. a tavalyi (2015) +
+Javasolta: http://wesnoth.fsf.hu/forum/tema/1722#comment-17763[Jf. Tasz]
