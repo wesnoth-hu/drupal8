@@ -9,6 +9,12 @@ A fejlesztés a közösség Github tárolóján zajlik. A projekttel kapcsolatos
 
 Az átállással kapcsolatos megbeszélések a portál fórumán zajlanak. Több téma is létre lett hozva az észrevételekkel, mindenképpen használjuk http://wesnoth.fsf.hu/forums/portal/eszrevetelek[„A portál / Észrevételek” kategóriát]. A specifikáció segít összegyűjteni a különböző témákban felmerült igényeket.
 
+== Projektterv
+
+=== Ütemezés
+
+=== Feladatok állapota
+
 == Grafikai követelmények
 
 - Ne legyen sötét alapon világos betűs, fárasztóbb a szemnek. +
