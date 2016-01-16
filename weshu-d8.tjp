@@ -37,7 +37,10 @@ task d8 "Drupal 8 migrálás" {
       start 2016-01-10-09:00
       effort 7d
       allocate dev, board
-      complete 0
+      complete 80
+      journalentry 2016-01-16 "Specifikáció folyamatban van" {
+        alert green
+      }
     }
     task translators "Fordítók igényeinek felmérése" {
       start 2016-01-10-09:00
@@ -63,6 +66,9 @@ task d8 "Drupal 8 migrálás" {
       depends !!spec.featurelist
       effort 2d
       allocate dev
+      journalentry 2016-01-16 "Advanced Forum modulnak nincs 8-as verziója még" {
+        alert yellow
+      }
     }
     task webcollab "WebCollab kiváltása" {
       depends !!spec.translators, !plan

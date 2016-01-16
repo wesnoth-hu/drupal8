@@ -107,6 +107,10 @@ Javasolta: http://wesnoth.fsf.hu/forum/tema/1722#comment-17763[Jf. Tasz]
 Javasolta: http://wesnoth.fsf.hu/forum/tema/1722#comment-17763[Jf. Tasz]
 - Wesnoth Ladder profil és pontok a profilban. +
 Javasolta: http://wesnoth.fsf.hu/forum/tema/1722#comment-17765[Udi]
+- Aktivitásmérő, ha valaki be van jelentkezve a játék szerverére. +
+Javasolta: http://wesnoth.fsf.hu/forum/tema/1722#comment-17761[NymmeL]
+- Egy esemény naptár, ahol mindenki be tudja jelölni mikor tud fent lenni szerveren játszani. Ugyanilyen naptárba egy-két elszánt ember beírná a nevét mint bíró vagy tervező vagy ami akar lenni. (Persze ez kedv függő) Így nyomon követhető lenne az események ideje, a felelős személy neve (tudjuk kit kell kérdezgetni stb) és hogy ki jelentkezett már. +
+Javasolta: http://wesnoth.fsf.hu/forum/tema/1722#comment-17761[NymmeL], http://wesnoth.fsf.hu/forum/tema/1722#comment-17775[NymmeL]
 
 === Versenyszervezés
 
@@ -129,3 +133,39 @@ Javasolta: http://wesnoth.fsf.hu/forum/tema/1722#comment-17763[Jf. Tasz]
 Javasolta: http://wesnoth.fsf.hu/forum/tema/1722#comment-17763[Jf. Tasz]
 - Éves összefoglalók, első lenne az idei (2016) és a 0. a tavalyi (2015) +
 Javasolta: http://wesnoth.fsf.hu/forum/tema/1722#comment-17763[Jf. Tasz]
+
+== Oldalmegtekintések
+
+\2015. január 13. és 2016. január 13. között az új látogatók aránya 31,3%, a visszatérőké 68,9%.
+
+A következő táblázat a 2015. január 13. és 2016. január 13. közötti leggyakrabban látogatott oldalakat tartalmazza.
+
+[format="csv", options="header"]
+|===
+Oldal,Egyedi oldalmegtekintések,Oldalon töltött átl. idő
+/,14385,00:02:21
+/jatek/letoltes,1782,00:02:08
+/tracker,1095,00:00:40
+/messages,1444,00:00:18
+/bajnoksag/allas,1003,00:02:24
+/forum/tema/1445,1427,00:04:38
+/forum,746,00:00:27
+/kieg,719,00:01:52
+/node,805,00:00:51
+/bajnoksag/merkozesek,492,00:01:28
+/comment/reply/1877,482,00:02:41
+/comment/reply/1382,463,00:01:15
+/tudastar,444,00:00:19
+/jatek,381,00:00:21
+/bajnoksag2015jelentkezok,344,00:01:34
+/messages/view/3759,251,00:02:43
+/bajnoksag,273,00:00:33
+/jatek/kezikonyv,382,00:02:52
+/node/393,361,00:02:50
+/users/krogen,255,00:00:07
+/forums/harc-wesnoth-ert/szabad-beszelgetes,230,00:00:30
+/mwb2015szabaly,256,00:04:02
+/users/miroku,94,00:00:17
+/jatek/palyak,260,00:00:30
+/admin/wesnoth/verseny/merkozesek,28,00:00:16
+|===
