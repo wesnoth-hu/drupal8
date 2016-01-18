@@ -1,9 +1,9 @@
 # Asciidoctor output
-specifikacio.html
+docs/specifikacio.html
 # Task Juggler output
-Overview.html
-Status.html
-css/tj*
-icons
-scripts
-index.html
+docs/Overview.html
+docs/Status.html
+docs/css/tj*
+docs/icons
+docs/scripts
+docs/index.html
