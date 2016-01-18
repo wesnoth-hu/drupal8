@@ -1,0 +1,36 @@
+name: wesnoth
+type: profile
+description: 'Magyar Wesnoth Közösség profile.'
+core: 8.x
+
+# Optional: Declare your installation profile as a distribution
+# This will make the installer auto-select this installation profile.
+# The distribution_name property is used in the installer and other places as
+# a label for the software being installed.
+distribution:
+  name: Magyar Wesnoth Közösség
+
+# Required modules
+dependencies:
+  - node
+  - history
+  - block
+  - block_content
+  - config
+  - comment
+  - contact
+  - help
+  - image
+  - menu
+  - options
+  - path
+  - taxonomy
+  - dblog
+  - search
+  - shortcut
+  - toolbar
+  - field_ui
+  - file
+  - views
+  - views_ui
+  - editor
