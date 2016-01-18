@@ -11,7 +11,7 @@
  *
  * @see system_install()
  */
-function wesnoth_install() {
+function wesnoth_hu_install() {
   // First, do everything in standard profile.
   include_once DRUPAL_ROOT . '/core/profiles/minimal/minimal.install';
   minimal_install();

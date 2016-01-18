@@ -4,6 +4,18 @@
 
 A Drupal 8 migrációval kapcsolatos projekt fájljai
 
+### Portál
+
+A telepítéshez szükség van [composerre](http://getcomposer.org/) és [drushra](http://www.drush.org/en/master/). A következő lépéseket kövesd:
+
+```shell
+git clone git@github.com:wesnoth-hu/drupal8.git
+cd drupal8
+composer.phar install
+cd web
+drush.phar site-install wesnoth_hu --db-url=mysql://USER:PASSWORD@HOST/DATABASE --db-prefix=drupal8_ --locale=hu
+```
+
 ### Dokumentáció
 
 A `docs/weshu-d8.tjp` fájl egy [TaskJuggler](http://www.taskjuggler.org/) projekt fájl. A segítségével HTML készíthető belőle.
@@ -15,6 +27,18 @@ A `docs/mergedocs.sh` fájl egy bash script, ami a fenti kettő generálást elv
 ## English
 
 Project related files for Drupal 8 migration
+
+### Webportal
+
+For the installation you need [composer](http://getcomposer.org) and [drush](http://www.drush.org/en/master). Follow these steps:
+
+```shell
+git clone git@github.com:wesnoth-hu/drupal8.git
+cd drupal8
+composer.phar install
+cd web
+drush.phar site-install wesnoth_hu --db-url=mysql://USER:PASSWORD@HOST/DATABASE --db-prefix=drupal8_ --locale=hu
+```
 
 ### Documentations
 

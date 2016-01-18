@@ -1,4 +1,4 @@
-name: wesnoth
+name: wesnoth_hu
 type: profile
 description: 'Magyar Wesnoth Közösség profile.'
 core: 8.x
@@ -16,21 +16,24 @@ dependencies:
   - history
   - block
   - block_content
-  - config
   - comment
-  - contact
-  - help
   - image
-  - menu
   - options
+  - menu_ui
   - path
   - taxonomy
   - dblog
   - search
   - shortcut
-  - toolbar
+  # - toolbar
   - field_ui
   - file
   - views
   - views_ui
   - editor
+  # no install files, therefore dependency will fail
+  # - help
+  # - contact
+  # - config
+themes:
+  - bartik
