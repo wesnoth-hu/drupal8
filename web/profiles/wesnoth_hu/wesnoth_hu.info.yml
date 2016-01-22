@@ -13,27 +13,35 @@ distribution:
 # Required modules
 dependencies:
   - node
-  - history
+  - dblog
   - block
   - block_content
   - comment
+  - ckeditor
+  - editor
+  - field_ui
+  - file
+  - forum
+  - history
   - image
+  - language
+  - locale
+  - content_translation
   - options
   - menu_ui
   - path
   - taxonomy
-  - dblog
+  - tracker
   - search
   - shortcut
   # - toolbar
-  - field_ui
-  - file
   - views
   - views_ui
-  - editor
   # no install files, therefore dependency will fail
   # - help
   # - contact
   # - config
+  # contrib modules
+  - poll
 themes:
   - bartik

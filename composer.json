@@ -21,7 +21,8 @@
         "drupal/core": "8.0.*",
         "drush/drush": "~8.0",
         "drupal/console": "~0.10",
-        "drupal/migrate_upgrade": "8.1.*@dev"
+        "drupal/migrate_upgrade": "8.1.*@dev",
+        "drupal/poll": "8.1.0-alpha1"
     },
     "require-dev": {
         "behat/mink": "~1.6",
