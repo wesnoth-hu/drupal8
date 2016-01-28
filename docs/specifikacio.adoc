@@ -111,6 +111,8 @@ Javasolta: http://wesnoth.fsf.hu/forum/tema/1722#comment-17765[Udi]
 Javasolta: http://wesnoth.fsf.hu/forum/tema/1722#comment-17761[NymmeL]
 - Egy esemény naptár, ahol mindenki be tudja jelölni mikor tud fent lenni szerveren játszani. Ugyanilyen naptárba egy-két elszánt ember beírná a nevét mint bíró vagy tervező vagy ami akar lenni. (Persze ez kedv függő) Így nyomon követhető lenne az események ideje, a felelős személy neve (tudjuk kit kell kérdezgetni stb) és hogy ki jelentkezett már. +
 Javasolta: http://wesnoth.fsf.hu/forum/tema/1722#comment-17761[NymmeL], http://wesnoth.fsf.hu/forum/tema/1722#comment-17775[NymmeL]
+- A sok helyről ismerhető achievmentek, badgek vagy mérfőldkövek amikkel pontokat lehetne elérni. Lehetnének már meglévők is mint pl: a bajnokságon volt a legtöbb szintlépés stb.  Ennek a megvalósítását a játékosokra lehetne bízni csak a felületet kéne megadni esetleg egy menüpontot hozzá. Olyan lenne mint egy Wikipédia vagy mint egy Fórum. A játékosok megadnák az adott Mod nevét, ezt egy kis listában jelezné egy "linkkel". Mikor rányom kiad még egy listát ahova a játékosok beírták eredményeiket, ha kell fényképes bizonyítékkal. Ezek 2-3 havonta nullázódnának és az a hónapi első helyezett neve bekerülne egy emléktárba. +
+Javasolta: http://wesnoth.fsf.hu/forum/tema/1722#comment-17792[NymmeL]
 
 === Versenyszervezés
 
@@ -136,7 +138,11 @@ Javasolta: http://wesnoth.fsf.hu/forum/tema/1722#comment-17763[Jf. Tasz]
 
 == Oldalmegtekintések
 
+=== Új látogatók aránya ===
+
 \2015. január 13. és 2016. január 13. között az új látogatók aránya 31,3%, a visszatérőké 68,9%.
+
+=== Leglátogatottabb oldalak ===
 
 A következő táblázat a 2015. január 13. és 2016. január 13. közötti leggyakrabban látogatott oldalakat tartalmazza.
 
@@ -168,4 +174,60 @@ Oldal,Egyedi oldalmegtekintések,Oldalon töltött átl. idő
 /users/miroku,94,00:00:17
 /jatek/palyak,260,00:00:30
 /admin/wesnoth/verseny/merkozesek,28,00:00:16
+|===
+
+=== Leggyakrabb felbontások ===
+
+A következő táblázat a 2015. január 13. és 2016. január 13. közötti leggyakrabb felbontásokat tartalmazza.
+
+[format="csv", options="header"]
+|===
+Képernyőfelbontás,Munkamenetek,Munkamenetek %-os aránya
+1366x768,5963,"30,82%"
+1280x1024,2668,"13,79%"
+1920x1080,1308,"6,76%"
+1680x1050,1246,"6,44%"
+1024x768,1153,"5,96%"
+(not set),822,"4,25%"
+1280x800,743,"3,84%"
+1600x900,720,"3,72%"
+320x534,528,"2,73%"
+1440x900,520,"2,69%"
+|===
+
+=== Leggyakrabb böngészők ===
+
+A következő táblázat a 2015. január 13. és 2016. január 13. közötti leggyakrabb operációs rendszereket tartalmazza.
+
+[format="csv", options="header"]
+|===
+Böngésző,Munkamenetek,Munkamenetek %-os aránya
+Chrome,9345,"48,30%"
+Firefox,7167,"37,04%"
+Android Browser,872,"4,51%"
+Safari,669,"3,46%"
+Internet Explorer,638,"3,30%"
+Opera,397,"2,05%"
+(not set),119,"0,62%"
+Opera Mini,61,"0,32%"
+Edge,19,"0,10%"
+Maxthon,18,"0,09%"
+|===
+
+=== Leggyakrabb operációs rendszerek ===
+
+A következő táblázat a 2015. január 13. és 2016. január 13. közötti leggyakrabb operációs rendszereket tartalmazza.
+[format="csv", options="header"]
+|===
+Operációs rendszer,Munkamenetek,Munkamenetek %-os aránya
+Windows,13993,"72,32%"
+Android,2331,"12,05%"
+Linux,1465,"7,57%"
+Macintosh,722,"3,73%"
+iOS,451,"2,33%"
+Windows Phone,236,"1,22%"
+(not set),141,"0,73%"
+Firefox OS,2,"0,01%"
+Nintendo Wii,2,"0,01%"
+Samsung,2,"0,01%"
 |===
