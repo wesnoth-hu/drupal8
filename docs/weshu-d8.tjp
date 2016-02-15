@@ -1,4 +1,4 @@
-project weshu_d8 "Magyar Wesnoth Közösségi Portál Drupal 8 migrálás"  2016-01-04 +3m {
+project weshu_d8 "Magyar Wesnoth Közösségi Portál Drupal 8 migrálás" "1.1.0" 2016-01-04 +4m {
   timezone "Europe/Budapest"
   currency "HUF"
   timeformat "%Y-%m-%d"
@@ -29,7 +29,7 @@ task d8 "Drupal 8 migrálás" {
     task domain "Szavazás domain névről" {
       start 2016-01-05-18:00
       effort 14d
-      allocate dev1, board
+      allocate board
       complete 100
       journalentry 2016-01-09 "Szavazás eldőlni látszik" {
         alert green
@@ -40,32 +40,44 @@ task d8 "Drupal 8 migrálás" {
     }
     task featurelist "Kívánságlista összeállítása" {
       start 2016-01-10-09:00
-      effort 7d
-      allocate dev, board
-      complete 80
+      # effort 7d
+      allocate board
+      complete 100
+      end 2016-02-04
       journalentry 2016-01-16 "Specifikáció folyamatban van" {
+        alert green
+      }
+      journalentry 2016-02-15 "Feladatlistát véglegesnek tekintjük" {
+        details "Február 4. óta nem jött újabb ötlet, a feladatlistát véglegesnek tekintjük az átállás idejére."
         alert green
       }
     }
     task translators "Fordítók igényeinek felmérése" {
       start 2016-01-10-09:00
-      effort 7d
+      # effort 7d
       allocate dev, translators
-      complete 0
-      # end 2016-01-28
+      complete 100
+      end 2016-02-04
       journalentry 2016-01-26 "A fordítók nem jeleztek vissza, emailt kell küldeni" {
         alert yellow
+      }
+      journalentry 2016-02-15 "Noodley visszajelzett, a fordítói műhely egyelőre nem kell" {
+        alert green
       }
     }
   }
   task design "Megjelenés" {
     task plan "Grafikai terv" {
       depends !!spec.featurelist
-      effort 7d
+      effort 21d
       allocate des
-      complete 20
+      complete 60
       journalentry 2016-01-26 "A grafikai terv az eredeti ütemezés alapján csúszik" {
         details "A grafikai tervnek az eredeti ütemezés alapján 2016-01-25 kellett volna elkészülnie. A mockup kész. SilverMage készített két látványtervet a régi design alapján, de a tartalmak ezen sincsenek elhelyezve."
+        alert yellow
+      }
+      journalentry 2016-02-15 "A grafikai terv majdnem kész" {
+        details "Udi látványterve is kész, a fórumon meg is lett beszélve. Még hiányzik a mobilos nézet és a színsémák."
         alert yellow
       }
     }
@@ -78,27 +90,31 @@ task d8 "Drupal 8 migrálás" {
   }
   task website "Portál" {
     task plan "Átálláshoz szükséges modulok összegyűjtése" {
-      depends !!spec.featurelist
-      effort 2d
+      # depends !!spec.featurelist
+      effort 14d
       allocate dev
-      complete 60
+      complete 100
+      end 2016-02-15
       journalentry 2016-01-16 "Advanced Forum modulnak nincs 8-as verziója még" {
         alert yellow
       }
-    }
-    task webcollab "WebCollab kiváltása" {
-      depends !!spec.translators, !plan
-      effort 7d
-      allocate dev
+      journalentry 2016-02-15 "A modulok össze vannak gyűjtve, de elég sok hiányzik" {
+        alert green
+      }
     }
     task runbook "Átállás menetének kidolgozása" {
-      depends !!spec.featurelist, !webcollab, !plan
-      effort 3d
+      # depends !!spec.featurelist
+      effort 14d
       allocate dev
-      complete 30
+      complete 50
+      start 2016-01-16
       journalentry 2016-01-26 "Drupal8 migráció kidolgozás alatt" {
         details "A userek, node-ok megfelelően működnek migrálás után. A comment, poll és forum még nem."
         alert green
+      }
+      journalentry 2016-02-15 "Commentek migrációja megoldva" {
+        details "A commentek migrálása sikeres. A poll lesz a következő, de nem lesz egyszerű. A forum hibáját még nem volt idő felmérni."
+        alert yellow
       }
     }
   }
@@ -110,7 +126,7 @@ task d8 "Drupal 8 migrálás" {
     }
     task test "Vélemények, hibák begyűjtése" {
       depends !new
-      effort 7d
+      effort 14d
       allocate board, dev
     }
     task fixes "Hibák javítása" {
@@ -123,6 +139,29 @@ task d8 "Drupal 8 migrálás" {
     depends !test
     effort 1d
     allocate dev
+  }
+}
+
+task d8_after "Migrálás utáni feladatok" {
+  task championship "Bajnokság modul migrálása" {
+    depends d8
+    effort 14d
+    allocate dev
+    priority 300
+  }
+  task calendar "Naptár modul megvalósítása" {
+    depends d8
+    effort 7d
+    allocate dev
+  }
+  task webcollab "WebCollab kiváltása" {
+    depends d8
+    effort 7d
+    allocate dev
+    priority 1000
+    journalentry 2016-02-15 "Mivel a fordítóknak egyelőre nem kell a műhely, átütemezzük az átállás utánra" {
+      alert green
+    }
   }
 }
 
