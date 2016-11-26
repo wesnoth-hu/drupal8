@@ -5,7 +5,7 @@ dependencies:
     - bartik
 id: bartik_local_tasks
 theme: bartik
-region: content
+region: sidebar_first
 weight: -20
 provider: null
 plugin: local_tasks_block
