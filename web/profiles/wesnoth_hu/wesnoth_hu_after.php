@@ -148,6 +148,27 @@ $filters->removeInstanceID('filter_null');
 // $filters->removeFilter('filter_null');
 $format->save();
 
+// Create 'alakhu' editor.
+/*
+$ePM = \Drupal::service('plugin.manager.editor');
+$plugin = $ePM->createInstance('ckeditor');
+// $plugin = $this->ckeditorPluginManager->createInstance($plugin_id);
+
+// $editor = \Drupal\editor\Entity\Editor::create(['id'=>'alakhu', 'plugin_id'=>'ckeditor']);
+// From Entity.php
+$values=['id'=>'alakhu'];
+$eTM = \Drupal::entityTypeManager();
+// print_r($eTM->getDefinitions());
+
+$eM = \Drupal::entityManager();
+// $editor = $eM->getStorage($eM->getEntityTypeFromClass('Drupal\editor\Entity\Editor'))->create($values);
+$editor = $eTM->getStorage('editor')->create($values);
+// /*
+$editor->setEditor('ckeditor');
+$editor->setFormat('alakhu');
+$editor->save();
+// */
+
 // Set imported block positions
 // user_6 = login
 \Drupal::configFactory()->getEditable('block.block.user_6')
@@ -170,23 +191,61 @@ $format->save();
 	->set('region', 'sidebar_first')
 	->save();
 
-// Create 'alakhu' editor.
 /*
-$ePM = \Drupal::service('plugin.manager.editor');
-$plugin = $ePM->createInstance('ckeditor');
-// $plugin = $this->ckeditorPluginManager->createInstance($plugin_id);
+array(1) {
+  ["user_role"]=>
+  array(4) {
+    ["id"]=>
+    string(9) "user_role"
+    ["roles"]=>
+    array(1) {
+      ["authenticated"]=>
+      string(13) "authenticated"
+    }
+    ["negate"]=>
+    bool(false)
+    ["context_mapping"]=>
+    array(1) {
+      ["user"]=>
+      string(39) "@user.current_user_context:current_user"
+    }
+  }
+}
+*/
 
-// $editor = \Drupal\editor\Entity\Editor::create(['id'=>'alakhu', 'plugin_id'=>'ckeditor']);
-// From Entity.php
-$values=['id'=>'alakhu'];
-$eTM = \Drupal::entityTypeManager();
-// print_r($eTM->getDefinitions());
+$vis = ['user_role'=> [
+	'id'=>'user_role',
+	'roles'=>[
+		'authenticated'=>'authenticated'
+	],
+	'negate'=>false,
+	'context_mapping'=>[
+		'user'=>'@user.current_user_context:current_user'
+	]	
+]];
 
-$eM = \Drupal::entityManager();
-// $editor = $eM->getStorage($eM->getEntityTypeFromClass('Drupal\editor\Entity\Editor'))->create($values);
-$editor = $eTM->getStorage('editor')->create($values);
+// Set any possible content for authenticated users only before release
 // /*
-$editor->setEditor('ckeditor');
-$editor->setFormat('alakhu');
-$editor->save();
-// */
+\Drupal::configFactory()->getEditable('block.block.elsodlegeslinkek')
+	->set('visibility', $vis)
+	->save();
+\Drupal::configFactory()->getEditable('block.block.felhasznaloifiokmenuje')
+	->set('visibility', $vis)
+	->save();
+\Drupal::configFactory()->getEditable('block.block.user_7')
+	->set('visibility', $vis)
+	->save();
+\Drupal::configFactory()->getEditable('block.block.user_8')
+	->set('visibility', $vis)
+	->save();
+\Drupal::configFactory()->getEditable('block.block.user_9')
+	->set('visibility', $vis)
+	->save();
+\Drupal::configFactory()->getEditable('block.block.search_1')
+	->set('visibility', $vis)
+	->save();
+
+\Drupal::configFactory()->getEditable('user.role.anonymous.yml')
+	->set('permissions', [])
+	->save();
+// End of hiding before release */
