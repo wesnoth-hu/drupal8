@@ -1,0 +1,10 @@
+langcode: hu
+status: true
+dependencies: {  }
+name: Szavazás
+type: poll
+description: 'A <em>szavazás</em> egy kérdés és a lehetséges válaszok összessége. Egy <em>szavazáshoz</em> automatikusan létrejön egy számláló, amely minden leadott voksot számol.'
+help: ''
+new_revision: false
+preview_mode: 1
+display_submitted: true

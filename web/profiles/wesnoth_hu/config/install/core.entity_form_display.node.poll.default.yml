@@ -1,0 +1,82 @@
+langcode: hu
+status: true
+dependencies:
+  config:
+    - field.field.node.poll.comment
+    - field.field.node.poll.egyeb
+    - field.field.node.poll.forums1
+    - field.field.node.poll.upload
+    - node.type.poll
+  module:
+    - comment
+    - file
+    - path
+id: node.poll.default
+targetEntityType: node
+bundle: poll
+mode: default
+content:
+  comment:
+    type: comment_default
+    weight: 20
+    settings: {  }
+    third_party_settings: {  }
+  created:
+    type: datetime_timestamp
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+  egyeb:
+    type: options_select
+    weight: 20
+    settings: {  }
+    third_party_settings: {  }
+  forums1:
+    type: options_select
+    weight: 20
+    settings: {  }
+    third_party_settings: {  }
+  langcode:
+    type: language_select
+    weight: 2
+    settings: {  }
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 30
+    settings: {  }
+    third_party_settings: {  }
+  promote:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 15
+    third_party_settings: {  }
+  sticky:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 16
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: -5
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  uid:
+    type: entity_reference_autocomplete
+    weight: 5
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  upload:
+    settings:
+      progress_indicator: throbber
+    type: file_generic
+    weight: 31
+    third_party_settings: {  }
+hidden: {  }

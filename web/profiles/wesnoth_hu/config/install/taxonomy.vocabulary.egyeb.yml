@@ -1,0 +1,9 @@
+uuid: 1b333237-c23b-41eb-87d2-aab8052768f8
+langcode: hu
+status: true
+dependencies: {  }
+name: Egyéb
+vid: egyeb
+description: 'Egyéb címkék, ami az oldal adataihoz szükségesek'
+hierarchy: 1
+weight: 0

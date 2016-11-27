@@ -1,0 +1,21 @@
+langcode: hu
+status: true
+dependencies:
+  config:
+    - node.type.poll
+id: node.poll.sticky
+field_name: sticky
+entity_type: node
+bundle: poll
+label: 'Sticky at the top of lists'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: Be
+  off_label: Ki
+field_type: boolean

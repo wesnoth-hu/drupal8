@@ -1,0 +1,53 @@
+langcode: hu
+status: true
+dependencies:
+  config:
+    - core.entity_view_display.comment.comment.default
+    - field.field.node.poll.comment
+    - field.field.node.poll.egyeb
+    - field.field.node.poll.forums1
+    - field.field.node.poll.upload
+    - node.type.poll
+  module:
+    - comment
+    - file
+    - user
+id: node.poll.default
+targetEntityType: node
+bundle: poll
+mode: default
+content:
+  comment:
+    label: hidden
+    type: comment_default
+    weight: 20
+    settings:
+      view_mode: default
+      pager_id: 0
+    third_party_settings: {  }
+  egyeb:
+    label: hidden
+    type: entity_reference_label
+    weight: 20
+    settings:
+      link: true
+    third_party_settings: {  }
+  forums1:
+    label: hidden
+    type: entity_reference_label
+    weight: 20
+    settings:
+      link: true
+    third_party_settings: {  }
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+  upload:
+    label: hidden
+    settings: {  }
+    type: file_default
+    weight: 101
+    third_party_settings: {  }
+hidden:
+  langcode: true
