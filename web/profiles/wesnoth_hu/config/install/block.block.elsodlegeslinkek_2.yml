@@ -1,0 +1,25 @@
+uuid: 6006c9b4-4a7c-4cff-88a0-f727e6dfb7a6
+langcode: hu
+status: true
+dependencies:
+  config:
+    - system.menu.primary-links
+  module:
+    - system
+    - user
+  theme:
+    - bartik
+id: elsodlegeslinkek_2
+theme: bartik
+region: secondary_menu
+weight: 0
+provider: null
+plugin: 'system_menu_block:primary-links'
+settings:
+  id: 'system_menu_block:primary-links'
+  label: 'Elsődleges linkek'
+  provider: system
+  label_display: '0'
+  level: 2
+  depth: 0
+visibility: {  }

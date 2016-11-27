@@ -1,0 +1,24 @@
+uuid: ad7c9bd0-bdff-435b-b0e0-71609d412a30
+langcode: hu
+status: true
+dependencies:
+  config:
+    - system.menu.account
+  module:
+    - system
+  theme:
+    - bartik
+id: felhasznaloifiokmenuje
+theme: bartik
+region: sidebar_first
+weight: 0
+provider: null
+plugin: 'system_menu_block:account'
+settings:
+  id: 'system_menu_block:account'
+  label: 'Felhasználói fiók menüje'
+  provider: system
+  label_display: visible
+  level: 1
+  depth: 0
+visibility: {  }
