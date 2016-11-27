@@ -1,18 +1,27 @@
-project weshu_d8 "Magyar Wesnoth Közösségi Portál Drupal 8 migrálás" "1.1.0" 2016-01-04 +4m {
+project weshu_d8 "Magyar Wesnoth Közösségi Portál Drupal 8 migrálás" "1.2.0" 2016-01-04 +14m {
   timezone "Europe/Budapest"
   currency "HUF"
   timeformat "%Y-%m-%d"
   numberformat "-" "" "," "." 1
   currencyformat "(" ")" "," "." 0
+  scenario plan "Eredeti terv" {
+    scenario actual "Tényleges szituáció" {
+      active no
+    }
+  }
 }
 
 resource dev "Fejlesztők" {
   resource dev1 "Udi" {
+    workinghours sun 14:00 - 20:00
+    vacation "Munkahelyváltás" 2016-02-15 - 2016-11-26
   }
 }
 
 resource des "Grafikusok" {
   resource des1 "Udi" {
+    workinghours sun 14:00 - 20:00
+    vacation "Munkahelyváltás" 2016-02-15 - 2016-11-26
   }
   resource des2 "SilverMage" {
   }
@@ -84,7 +93,7 @@ task d8 "Drupal 8 migrálás" {
     task theme "Drupal 8 smink" {
       depends !plan
       effort 7d
-      allocate des
+      allocate des1
       complete 0
     }
   }
@@ -116,6 +125,10 @@ task d8 "Drupal 8 migrálás" {
         details "A commentek migrálása sikeres. A poll lesz a következő, de nem lesz egyszerű. A forum hibáját még nem volt idő felmérni."
         alert yellow
       }
+      journalentry 2016-11-27 "Poll tartalomtípus konvertálása kész" {
+        details "A poll tartalomtípus konvertálása kész, de a szavazás entity típust még hozzá kell rendelni minden egyes szavazáshoz."
+        alert yellow
+      }
     }
   }
   task test "Tesztelés" {
@@ -123,6 +136,11 @@ task d8 "Drupal 8 migrálás" {
       depends d8.design, d8.website
       effort 2d
       allocate dev
+      complete 10
+      journalentry 2016-11-27 "Barack HTTPS probléma miatt csúszik a tesztportál" {
+        details "A Barack szerver HTTPS problémája jelezve lett a rendszergazdának, várjuk a visszajelzést és a megoldást."
+        alert yellow
+      }
     }
     task test "Vélemények, hibák begyűjtése" {
       depends !new
@@ -225,6 +243,7 @@ textreport frame "" {
   footer "----"
   textreport index "Overview" {
     formats html
+    scenarios plan
     center '<[report id="overview"]>'
   }
 
