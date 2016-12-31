@@ -1,0 +1,8 @@
+uuid: 6a55531d-6c65-4350-9653-5be2e34ba9a7
+langcode: hu
+status: true
+dependencies: {  }
+id: primary-links
+label: 'Elsődleges linkek'
+description: 'Az elsődleges linkeket jellemzően a sminkek maguktól a megfelelő helyre illesztik és egyedi módon jelenítik meg. A menü célja általában a webhely főbb egységeinek hivatkozása, például a weblapok tetején. '
+locked: false
