@@ -21,7 +21,7 @@ A __migrációhoz__ a következő lépéseket kövesd:
 ```shell
 drush.phar pm-enable -y migrate_upgrade migrate_plus migrate_tools
 drush.phar migrate-upgrade --legacy-db-url=mysql://USER:PASSWORD@HOST/DATABASE --legacy-root=/var/www/filesystem --legacy-db-prefix=drupal_
-drush.phar php-script profiles/wesnoth_hu/wesnoth_hu_after.php
+drush.phar php-script profiles/wesnoth_hu/wesnoth_hu_postmigration.php
 ```
 
 ### Dokumentáció
@@ -53,7 +53,7 @@ For the __migration__ follow these steps:
 ```shell
 drush.phar pm-enable -y migrate_upgrade migrate_plus migrate_tools
 drush.phar migrate-upgrade --legacy-db-url=mysql://USER:PASSWORD@HOST/DATABASE --legacy-root=/var/www/filesystem --legacy-db-prefix=drupal_
-drush.phar php-script profiles/wesnoth_hu/wesnoth_hu_after.php
+drush.phar php-script profiles/wesnoth_hu/wesnoth_hu_postmigration.php
 ```
 
 ### Documentations
