@@ -1,4 +1,4 @@
-project weshu_d8 "Magyar Wesnoth Közösségi Portál Drupal 8 migrálás" "1.2.0" 2016-01-04 +14m {
+project weshu_d8 "Magyar Wesnoth Közösségi Portál Drupal 8 migrálás" "1.2.0" 2016-01-04 +15m {
   timezone "Europe/Budapest"
   currency "HUF"
   timeformat "%Y-%m-%d"
@@ -79,6 +79,8 @@ task d8 "Drupal 8 migrálás" {
     task plan "Grafikai terv" {
       depends !!spec.featurelist
       effort 21d
+      effortleft 8d
+      start 2016-02-04
       allocate des
       complete 60
       journalentry 2016-01-26 "A grafikai terv az eredeti ütemezés alapján csúszik" {
@@ -114,8 +116,9 @@ task d8 "Drupal 8 migrálás" {
     task runbook "Átállás menetének kidolgozása" {
       # depends !!spec.featurelist
       effort 14d
+      effortleft 5d
       allocate dev
-      complete 50
+      complete 70
       start 2016-01-16
       journalentry 2016-01-26 "Drupal8 migráció kidolgozás alatt" {
         details "A userek, node-ok megfelelően működnek migrálás után. A comment, poll és forum még nem."
@@ -129,16 +132,29 @@ task d8 "Drupal 8 migrálás" {
         details "A poll tartalomtípus konvertálása kész, de a szavazás entity típust még hozzá kell rendelni minden egyes szavazáshoz."
         alert yellow
       }
+      journalentry 2017-01-05 "Fórum témák és hozzászólások konvertálása kész" {
+        details "A fórumtémák és hozzászólások a helyükre kerültek, ennyivel el lehet indulni. A fórummal még sok munka lesz, mert az advanced_forum modulnak nincs 8-as verziója."
+        alert green
+      }
     }
   }
   task test "Tesztelés" {
     task new "Új tesztportál létrehozása" {
-      depends d8.design, d8.website
+      depends d8.website.plan
+      start 2016-11-27-08:00
       effort 2d
+      effortleft 1d
       allocate dev
-      complete 10
+      complete 20
       journalentry 2016-11-27 "Barack HTTPS probléma miatt csúszik a tesztportál" {
         details "A Barack szerver HTTPS problémája jelezve lett a rendszergazdának, várjuk a visszajelzést és a megoldást."
+        alert yellow
+      }
+      journalentry 2016-12-07 "Kimenő HTTPS hiba javítva" {
+        alert green
+      }
+      journalentry 2017-01-05 "Barack kimenő forgalom szűrve van" {
+        details "Mivel a Barackon lévő virtuális gép kimenő forgalma erősen szűrve van, ezért nehéz a tesztportált létrehozni. Nincs PPA hozzáférés, nincs github.com, nincs drupal.org. A hiba jelezve a rendszergazdának, válasz még nincs."
         alert yellow
       }
     }
@@ -146,17 +162,20 @@ task d8 "Drupal 8 migrálás" {
       depends !new
       effort 14d
       allocate board, dev
+      complete 0
     }
     task fixes "Hibák javítása" {
       depends !test
       effort 7d
       allocate dev
+      complete 0
     }
   }
   task release "Átállás" {
     depends !test
     effort 1d
     allocate dev
+    complete 0
   }
 }
 
@@ -166,17 +185,20 @@ task d8_after "Migrálás utáni feladatok" {
     effort 14d
     allocate dev
     priority 300
+    complete 0
   }
   task calendar "Naptár modul megvalósítása" {
     depends d8
     effort 7d
     allocate dev
+    complete 0
   }
   task webcollab "WebCollab kiváltása" {
     depends d8
     effort 7d
     allocate dev
     priority 1000
+    complete 0
     journalentry 2016-02-15 "Mivel a fordítóknak egyelőre nem kell a műhely, átütemezzük az átállás utánra" {
       alert green
     }
