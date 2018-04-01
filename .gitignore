@@ -26,3 +26,6 @@ web/sites/default/files
 
 # == wesnoth.hu specific
 web/sites/default/settings.php
+
+# Ignore logs
+log
