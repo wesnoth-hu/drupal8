@@ -12,9 +12,10 @@
  * @see system_install()
  */
 function wesnoth_hu_install() {
-  // First, do everything in standard profile.
+  /* Since 8.5 there is no minimal.install
   include_once DRUPAL_ROOT . '/core/profiles/minimal/minimal.install';
   minimal_install();
-  
+  */
+
   // Can add code in here to make nodes, terms, etc.
 }
