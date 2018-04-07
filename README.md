@@ -1,10 +1,12 @@
-# drupal8
+# The wesnoth.fsf.hu Project
 
 ## Magyar
 
-A Drupal 8 migrációval kapcsolatos projekt fájljai
+A wesnoth.fsf.hu portál fájljai.
 
-### Portál
+### Drupal 8
+
+#### Portál
 
 A __telepítéshez__ szükség van [composerre](http://getcomposer.org/) és [drushra](http://www.drush.org/en/master/). A következő lépéseket kövesd:
 
@@ -24,7 +26,7 @@ drush.phar migrate-upgrade --legacy-db-url=mysql://USER:PASSWORD@HOST/DATABASE -
 drush.phar php-script profiles/wesnoth_hu/wesnoth_hu_postmigration.php
 ```
 
-### Dokumentáció
+#### Dokumentáció
 
 A `docs/weshu-d8.tjp` fájl egy [TaskJuggler](http://www.taskjuggler.org/) projekt fájl. A segítségével HTML készíthető belőle.
 
@@ -32,11 +34,11 @@ A `docs/specifikacio.adoc` fájl egy AsciiDoc fájl, az [Asciidoctorral](http://
 
 A `docs/mergedocs.sh` fájl egy bash script, ami a fenti kettő generálást elvégzi, és az eredményüket összefésüli egy index.html fájlba.
 
-## English
+### English
 
-Project related files for Drupal 8 migration
+Project related files for the wesnoth.fsf.hu site
 
-### Webportal
+#### Webportal
 
 For the __installation__ you need [composer](http://getcomposer.org) and [drush](http://www.drush.org/en/master). Follow these steps:
 
@@ -56,7 +58,7 @@ drush.phar migrate-upgrade --legacy-db-url=mysql://USER:PASSWORD@HOST/DATABASE -
 drush.phar php-script profiles/wesnoth_hu/wesnoth_hu_postmigration.php
 ```
 
-### Documentations
+#### Documentations
 
 The `docs/weshu-d8.tjp` file is a [TaskJuggler](http://www.taskjuggler.org/) project file. You can compile it to HTML.
 
