@@ -14,6 +14,9 @@ docs/index.html
 */log
 */vendor
 
+# Drupal 6 specific
+drupal6/web
+
 # Drupal 8 specific
 drupal8/web/core
 drupal8/web/modules/contrib

@@ -4,9 +4,29 @@
 
 A wesnoth.fsf.hu portál fájljai.
 
-### Drupal 8
+### Telepítés
 
-#### Portál
+#### Drupal 6
+
+A __telepítéshez__ szükség van [composerre](http://getcomposer.org/). A következő lépéseket kövesd:
+
+```shell
+git clone git@github.com:wesnoth-hu/project.git
+cd project
+composer.phar install
+cd web
+sudo update-alternatives --set php /usr/bin/php5.6
+../vendor/bin/drush.phar site-install default --db-url=mysql://USER:PASSWORD@HOST/DATABASE --db-prefix=drupal6_ --locale=hu
+../vendor/bin/drush.phar pm-enable advanced_forum author_pane comment_subject login_destination pathauto token transliteration image bbcode mass_contact privatemsg smileys captcha taxonomy_image wysiwyg views votingapi ctools
+```
+
+__Megjegyzés:__ mbstring hiba esetén tedd a sites/default/default.settings fájlba:
+```shell
+ini_set('mbstring.http_input', 'pass');
+ini_set('mbstring.http_output', 'pass');
+```
+
+#### Drupal 8
 
 A __telepítéshez__ szükség van [composerre](http://getcomposer.org/) és [drushra](http://www.drush.org/en/master/). A következő lépéseket kövesd:
 
@@ -38,7 +58,29 @@ A `docs/mergedocs.sh` fájl egy bash script, ami a fenti kettő generálást elv
 
 Project related files for the wesnoth.fsf.hu site
 
-#### Webportal
+### Installation
+
+#### Drupal 6
+
+For the __installation__ you need [composer](http://getcomposer.org). Follow these steps:
+
+```shell
+git clone git@github.com:wesnoth-hu/project.git
+cd project
+composer.phar install
+cd web
+sudo update-alternatives --set php /usr/bin/php5.6
+../vendor/bin/drush.phar site-install default --db-url=mysql://USER:PASSWORD@HOST/DATABASE --db-prefix=drupal6_ --locale=hu
+../vendor/bin/drush.phar pm-enable advanced_forum author_pane comment_subject login_destination pathauto token transliteration image bbcode mass_contact privatemsg smileys captcha taxonomy_image wysiwyg views votingapi ctools
+```
+
+__Note:__ in case of an mbstring error put the following into sites/default/default.settings file:
+```shell
+ini_set('mbstring.http_input', 'pass');
+ini_set('mbstring.http_output', 'pass');
+```
+
+#### Drupal 8
 
 For the __installation__ you need [composer](http://getcomposer.org) and [drush](http://www.drush.org/en/master). Follow these steps:
 
