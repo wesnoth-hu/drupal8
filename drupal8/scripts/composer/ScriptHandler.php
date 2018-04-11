@@ -11,6 +11,7 @@ use Composer\Script\Event;
 use Composer\Semver\Comparator;
 use DrupalFinder\DrupalFinder;
 use Symfony\Component\Filesystem\Filesystem;
+use Webmozart\PathUtil\Path;
 
 class ScriptHandler {
 
@@ -21,9 +22,9 @@ class ScriptHandler {
     $drupalRoot = $drupalFinder->getDrupalRoot();
 
     $dirs = [
-      'sites/all/modules',
+      'modules',
       'profiles',
-      'sites/all/themes',
+      'themes',
     ];
 
     // Required for unit testing
@@ -37,6 +38,15 @@ class ScriptHandler {
     // Prepare the settings file for installation
     if (!$fs->exists($drupalRoot . '/sites/default/settings.php') and $fs->exists($drupalRoot . '/sites/default/default.settings.php')) {
       $fs->copy($drupalRoot . '/sites/default/default.settings.php', $drupalRoot . '/sites/default/settings.php');
+      require_once $drupalRoot . '/core/includes/bootstrap.inc';
+      require_once $drupalRoot . '/core/includes/install.inc';
+      $settings['config_directories'] = [
+        CONFIG_SYNC_DIRECTORY => (object) [
+          'value' => Path::makeRelative($drupalFinder->getComposerRoot() . '/config/sync', $drupalRoot),
+          'required' => TRUE,
+        ],
+      ];
+      drupal_rewrite_settings($settings, $drupalRoot . '/sites/default/settings.php');
       $fs->chmod($drupalRoot . '/sites/default/settings.php', 0666);
       $event->getIO()->write("Create a sites/default/settings.php file with chmod 0666");
     }
@@ -47,27 +57,6 @@ class ScriptHandler {
       $fs->mkdir($drupalRoot . '/sites/default/files', 0777);
       umask($oldmask);
       $event->getIO()->write("Create a sites/default/files directory with chmod 0777");
-    }
-  }
-
-  /**
-   * Remove project-internal files after create project.
-   */
-  public static function removeInternalFiles(Event $event) {
-    $fs = new Filesystem();
-
-    // List of files to be removed.
-    $files = [
-      '.travis.yml',
-      'LICENSE',
-      'README.md',
-      'phpunit.xml.dist',
-    ];
-
-    foreach ($files as $file) {
-      if ($fs->exists($file)) {
-        $fs->remove($file);
-      }
     }
   }
 
