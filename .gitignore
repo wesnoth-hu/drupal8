@@ -20,6 +20,9 @@ drupal6/web
 
 # Drupal 7 specific
 drupal7/web
+drupal7/drush/sites
+drupal7/scripts/composer/post-install.sh
+drupal7/scripts/drupal
 
 # Drupal 8 specific
 drupal8/web/core
