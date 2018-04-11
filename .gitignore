@@ -13,9 +13,13 @@ docs/index.html
 */drush/contrib
 */log
 */vendor
+site-aliases/*.alias.drushrc.php
 
 # Drupal 6 specific
 drupal6/web
+
+# Drupal 7 specific
+drupal7/web
 
 # Drupal 8 specific
 drupal8/web/core

@@ -8,11 +8,11 @@ A wesnoth.fsf.hu portál fájljai.
 
 #### Drupal 6
 
-A __telepítéshez__ szükség van [composerre](http://getcomposer.org/). A következő lépéseket kövesd:
+A telepítéshez szükség van [composerre](http://getcomposer.org/). A következő lépéseket kövesd:
 
 ```shell
 git clone git@github.com:wesnoth-hu/project.git
-cd project
+cd project/drupal6
 composer.phar install
 cd web
 sudo update-alternatives --set php /usr/bin/php5.6
@@ -26,19 +26,44 @@ ini_set('mbstring.http_input', 'pass');
 ini_set('mbstring.http_output', 'pass');
 ```
 
-#### Drupal 8
+#### Drupal 7
 
-A __telepítéshez__ szükség van [composerre](http://getcomposer.org/) és [drushra](http://www.drush.org/en/master/). A következő lépéseket kövesd:
+A telepítéshez szükség van [composerre](http://getcomposer.org/) és [drushra](http://www.drush.org/en/master/). A következő lépéseket kövesd:
 
 ```shell
-git clone git@github.com:wesnoth-hu/drupal8.git
-cd drupal8
+git clone git@github.com:wesnoth-hu/project.git
+cd project/drupal7
 composer.phar install
 cd web
-drush.phar site-install wesnoth_hu --db-url=mysql://USER:PASSWORD@HOST/DATABASE --db-prefix=drupal8_ --locale=hu
+drush site-install standard --db-url=mysql://USER:PASSWORD@HOST/DATABASE --db-prefix=drupal7_ --locale=hu
 ```
 
-A __migrációhoz__ a következő lépéseket kövesd:
+#### Drupal 8
+
+A telepítéshez szükség van [composerre](http://getcomposer.org/) és [drushra](http://www.drush.org/en/master/). A következő lépéseket kövesd:
+
+```shell
+git clone git@github.com:wesnoth-hu/project.git
+cd project/drupal8
+composer.phar install
+cd web
+drush site-install wesnoth_hu --db-url=mysql://USER:PASSWORD@HOST/DATABASE --db-prefix=drupal8_ --locale=hu
+```
+
+### Frissítés
+
+#### Drupal 6-ról 7-re
+
+Telepítsük az előző fejezetben leírtak alapján a 6 és 7-es verziót. A site-aliases mappában másoljuk le a sample fájlt, majd töltsük ki a Drupal 7 oldal megfelelő adataival. Ezután lépjünk bele a Drupal 6-os könyvtárba, majd adjuk ki a következő parancsot:
+
+```shell
+cd drupal6/web
+../vendor/bin/drush site-upgrade --alias-path=../../site-aliases/ @wesnoth-d7
+```
+
+#### Drupal 6-ról 8-ra
+
+__FONTOS!__ A Drupal 6-ról 8-ra frissítés sokáig tervben volt, azonban a 7-re frissítés egyszerűbb és gyorsabb, ezért a portálnál ezt a módszert választottuk.
 
 ```shell
 drush.phar pm-enable -y migrate_upgrade migrate_plus migrate_tools
@@ -46,7 +71,7 @@ drush.phar migrate-upgrade --legacy-db-url=mysql://USER:PASSWORD@HOST/DATABASE -
 drush.phar php-script profiles/wesnoth_hu/wesnoth_hu_postmigration.php
 ```
 
-#### Dokumentáció
+### Dokumentáció
 
 A `docs/weshu-d8.tjp` fájl egy [TaskJuggler](http://www.taskjuggler.org/) projekt fájl. A segítségével HTML készíthető belőle.
 
@@ -54,7 +79,7 @@ A `docs/specifikacio.adoc` fájl egy AsciiDoc fájl, az [Asciidoctorral](http://
 
 A `docs/mergedocs.sh` fájl egy bash script, ami a fenti kettő generálást elvégzi, és az eredményüket összefésüli egy index.html fájlba.
 
-### English
+## English
 
 Project related files for the wesnoth.fsf.hu site
 
@@ -62,11 +87,11 @@ Project related files for the wesnoth.fsf.hu site
 
 #### Drupal 6
 
-For the __installation__ you need [composer](http://getcomposer.org). Follow these steps:
+For the installation you need [composer](http://getcomposer.org). Follow these steps:
 
 ```shell
 git clone git@github.com:wesnoth-hu/project.git
-cd project
+cd project/drupal6
 composer.phar install
 cd web
 sudo update-alternatives --set php /usr/bin/php5.6
@@ -80,19 +105,44 @@ ini_set('mbstring.http_input', 'pass');
 ini_set('mbstring.http_output', 'pass');
 ```
 
+#### Drupal 7
+
+For the __installation__ you need [composer](http://getcomposer.org) and [drush](http://www.drush.org/en/master). Follow these steps:
+
+```shell
+git clone git@github.com:wesnoth-hu/project.git
+cd project/drupal7
+composer.phar install
+cd web
+drush.phar site-install wesnoth_hu --db-url=mysql://USER:PASSWORD@HOST/DATABASE --db-prefix=drupal7_ --locale=hu
+```
+
 #### Drupal 8
 
 For the __installation__ you need [composer](http://getcomposer.org) and [drush](http://www.drush.org/en/master). Follow these steps:
 
 ```shell
-git clone git@github.com:wesnoth-hu/drupal8.git
-cd drupal8
+git clone git@github.com:wesnoth-hu/project.git
+cd project/drupal8
 composer.phar install
 cd web
 drush.phar site-install wesnoth_hu --db-url=mysql://USER:PASSWORD@HOST/DATABASE --db-prefix=drupal8_ --locale=hu
 ```
 
-For the __migration__ follow these steps:
+### Upgrade
+
+#### From Drupal 6 to 7
+
+Install both instances as discribed in the last section. Then we should copy and modify hte sample file in the site-aliases folder with the correct parameters of the Drupal 7 site. Then step into the Drupal 7 folder and issue the site-upgrade command:
+
+```shell
+cd drupal6/web
+../vendor/bin/drush site-upgrade --alias-path=../../site-aliases @wesnoth-d7
+```
+
+#### From Drupal 6 to 8
+
+__IMPORTANT!__ The Drupal 6 to 8 upgrade was planned for a long time, but upgrading to 7 seems easier and faster, therefore we choose that one for the site.
 
 ```shell
 drush.phar pm-enable -y migrate_upgrade migrate_plus migrate_tools
