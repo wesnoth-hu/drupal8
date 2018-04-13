@@ -1,7 +1,23 @@
 <?php
 
 $aliases['drupal6'] = [
-	'root' => '/var/www/wesnoth/drupal6',
-	'uri' => 'http://wesnoth-d6.localhost.udvari.org',
-	'db_url' => 'mysql://USER:PASSWORD@localhost/SCHEMA'
+  'root' => '/var/www/wesnoth/drupal6/web',
+  'uri' => 'http://wesnoth-d6.localhost.udvari.org',
+  // db_url is for Drupal 6, databases is for 7 and 8
+  'db_url' => 'mysql://USER:PASSWORD@localhost/SCHEMA'
+  'databases' =>
+  [
+    'default' =>
+    [
+      'default' =>
+      [
+        'driver' => 'mysql',
+        'username' => 'wesnoth',
+        'password' => 'aedeivequod5shiZoowu',
+        'port' => '',
+        'host' => 'localhost',
+        'database' => 'wesnoth_new',
+      ],
+    ],
+  ]
 ];
