@@ -36,6 +36,8 @@ cd project/drupal7
 composer.phar install
 cd web
 drush site-install standard --db-url=mysql://USER:PASSWORD@HOST/DATABASE --db-prefix=drupal7_ --locale=hu
+drush pm-enable profile image
+drush pm-enable $(ls sites/all/modules/contrib/)
 ```
 
 #### Drupal 8
@@ -54,12 +56,24 @@ drush site-install wesnoth_hu --db-url=mysql://USER:PASSWORD@HOST/DATABASE --db-
 
 #### Drupal 6-ról 7-re
 
-Telepítsük az előző fejezetben leírtak alapján a 6 és 7-es verziót. A site-aliases mappában másoljuk le a sample fájlt, majd töltsük ki a Drupal 7 oldal megfelelő adataival. Ezután lépjünk bele a Drupal 6-os könyvtárba, majd adjuk ki a következő parancsot:
+Telepítsük az előző fejezetben leírtak alapján a 6 és 7-es verziót. A site-aliases mappában másoljuk le a sample fájlt, majd töltsük ki a Drupal 7 oldal megfelelő adataival. Ezután adjuk ki a következő parancsokat:
 
 ```shell
-cd drupal6/web
+cd drupal7/web
+composer.phar remove drupal/login_destination drupal/taxonomy_image drupal/wysiwyg
+cd ../../drupal6/web
 ../vendor/bin/drush site-upgrade --alias-path=../../site-aliases/ @wesnoth-d7
+cd ../../drupal7/web
+composer.phar require drupal/wysiwyg
+drush pm-enable captcha content_migrate image auto_nodetitle download_count token pathauto transliteration bbcode mass_contact privatemsg privatemsg_limits privatemsg_filter privatemsg_roles pm_block_user pm_email_notify image_captcha taxonomy_list wysiwyg views_ui votingapi
+drush updatedb
+drush role-add-perm 'Adminisztrátor' 'edit own comments,administer fields,administer image styles,administer modules'
 ```
+
+__Megjegyzés:__ három modul nincs engedélyezve a frissítés előtt, mert gondot okoz:
+* login_destination: adatbázis probléma
+* taxonomy_image: a lauer.png fájl kétszer szerepel az adatbázisban
+* wysiwyg: [ismert hiba](https://www.drupal.org/project/wysiwyg/issues/2878771), az upgrade során a modul disabled állapotban van, ezért errort dob
 
 #### Drupal 6-ról 8-ra
 
@@ -115,6 +129,8 @@ cd project/drupal7
 composer.phar install
 cd web
 drush.phar site-install wesnoth_hu --db-url=mysql://USER:PASSWORD@HOST/DATABASE --db-prefix=drupal7_ --locale=hu
+drush pm-enable profile
+drush pm-enable $(ls sites/all/modules/contrib/)
 ```
 
 #### Drupal 8
@@ -136,9 +152,21 @@ drush.phar site-install wesnoth_hu --db-url=mysql://USER:PASSWORD@HOST/DATABASE 
 Install both instances as discribed in the last section. Then we should copy and modify hte sample file in the site-aliases folder with the correct parameters of the Drupal 7 site. Then step into the Drupal 7 folder and issue the site-upgrade command:
 
 ```shell
-cd drupal6/web
-../vendor/bin/drush site-upgrade --alias-path=../../site-aliases @wesnoth-d7
+cd drupal7/web
+composer.phar remove drupal/login_destination drupal/taxonomy_image drupal/wysiwyg
+cd ../../drupal6/web
+../vendor/bin/drush site-upgrade --alias-path=../../site-aliases/ @wesnoth-d7
+cd ../../drupal7/web
+composer.phar require drupal/wysiwyg
+drush pm-enable captcha content_migrate image auto_nodetitle download_count token pathauto transliteration bbcode mass_contact privatemsg privatemsg_limits privatemsg_filter privatemsg_roles pm_block_user pm_email_notify image_captcha taxonomy_list wysiwyg views_ui votingapi
+drush updatedb
+drush role-add-perm 'Adminisztrátor' 'edit own comments,administer fields,administer image styles,administer modules'
 ```
+
+__Note:__ the three modules are not enabled before the upgrade, because they cause issues:
+* login_destination: there is a data table issue
+* taxonomy_image: the lauer.png file is duplicated in the db
+* wysiwyg: [known error](https://www.drupal.org/project/wysiwyg/issues/2878771), during the upgrade the module is disabled and therefore it throws an error
 
 #### From Drupal 6 to 8
 
