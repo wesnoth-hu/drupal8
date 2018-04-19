@@ -69,6 +69,7 @@ drush pm-uninstall login_destination
 drush pm-enable captcha image auto_nodetitle download_count login_destination token pathauto transliteration bbcode mass_contact privatemsg privatemsg_limits privatemsg_filter privatemsg_roles pm_block_user pm_email_notify image_captcha taxonomy_list wysiwyg views_ui votingapi
 drush updatedb
 drush role-add-perm 'Adminisztrátor' 'edit own comments,administer fields,administer image styles,administer modules'
+drush cron
 ```
 
 __Megjegyzés:__ három modul nincs engedélyezve a frissítés előtt, mert gondot okoz:
@@ -163,6 +164,7 @@ drush pm-uninstall login_destination
 drush pm-enable captcha image auto_nodetitle download_count login_destination token pathauto transliteration bbcode mass_contact privatemsg privatemsg_limits privatemsg_filter privatemsg_roles pm_block_user pm_email_notify image_captcha taxonomy_list wysiwyg views_ui votingapi
 drush updatedb
 drush role-add-perm 'Adminisztrátor' 'edit own comments,administer fields,administer image styles,administer modules'
+drush cron
 ```
 
 __Note:__ the three modules are not enabled before the upgrade, because they cause issues:
