@@ -64,15 +64,16 @@ composer.phar remove drupal/login_destination drupal/taxonomy_image drupal/wysiw
 cd ../../drupal6/web
 ../vendor/bin/drush site-upgrade --alias-path=../../site-aliases/ @wesnoth-d7
 cd ../../drupal7/web
-composer.phar require drupal/wysiwyg
-drush pm-enable captcha content_migrate image auto_nodetitle download_count token pathauto transliteration bbcode mass_contact privatemsg privatemsg_limits privatemsg_filter privatemsg_roles pm_block_user pm_email_notify image_captcha taxonomy_list wysiwyg views_ui votingapi
+composer.phar require drupal/login_destination drupal/taxonomy_image drupal/wysiwyg
+drush pm-uninstall login_destination
+drush pm-enable captcha image auto_nodetitle download_count login_destination token pathauto transliteration bbcode mass_contact privatemsg privatemsg_limits privatemsg_filter privatemsg_roles pm_block_user pm_email_notify image_captcha taxonomy_list wysiwyg views_ui votingapi
 drush updatedb
 drush role-add-perm 'Adminisztrátor' 'edit own comments,administer fields,administer image styles,administer modules'
 ```
 
 __Megjegyzés:__ három modul nincs engedélyezve a frissítés előtt, mert gondot okoz:
-* login_destination: adatbázis probléma
-* taxonomy_image: a lauer.png fájl kétszer szerepel az adatbázisban
+* login_destination: nincs upgrade path a 6-os és a 7-es verzió között, uninstall és enable kell
+* taxonomy_image: az image field nem létezik upgrade közben, az upgrade után kell engedélyezni
 * wysiwyg: [ismert hiba](https://www.drupal.org/project/wysiwyg/issues/2878771), az upgrade során a modul disabled állapotban van, ezért errort dob
 
 #### Drupal 6-ról 8-ra
@@ -157,15 +158,16 @@ composer.phar remove drupal/login_destination drupal/taxonomy_image drupal/wysiw
 cd ../../drupal6/web
 ../vendor/bin/drush site-upgrade --alias-path=../../site-aliases/ @wesnoth-d7
 cd ../../drupal7/web
-composer.phar require drupal/wysiwyg
-drush pm-enable captcha content_migrate image auto_nodetitle download_count token pathauto transliteration bbcode mass_contact privatemsg privatemsg_limits privatemsg_filter privatemsg_roles pm_block_user pm_email_notify image_captcha taxonomy_list wysiwyg views_ui votingapi
+composer.phar require drupal/login_destination drupal/taxonomy_image drupal/wysiwyg
+drush pm-uninstall login_destination
+drush pm-enable captcha image auto_nodetitle download_count login_destination token pathauto transliteration bbcode mass_contact privatemsg privatemsg_limits privatemsg_filter privatemsg_roles pm_block_user pm_email_notify image_captcha taxonomy_list wysiwyg views_ui votingapi
 drush updatedb
 drush role-add-perm 'Adminisztrátor' 'edit own comments,administer fields,administer image styles,administer modules'
 ```
 
 __Note:__ the three modules are not enabled before the upgrade, because they cause issues:
-* login_destination: there is a data table issue
-* taxonomy_image: the lauer.png file is duplicated in the db
+* login_destination: there is no upgrade path from 6 to 7, it requires an uninstall and an enable
+* taxonomy_image: the image field does not exist during the upgrade, it needs to be enabled after the upgrade
 * wysiwyg: [known error](https://www.drupal.org/project/wysiwyg/issues/2878771), during the upgrade the module is disabled and therefore it throws an error
 
 #### From Drupal 6 to 8
